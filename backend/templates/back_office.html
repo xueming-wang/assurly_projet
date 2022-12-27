@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User Info</title>
+	<style>
+		table, td {
+			border: 1px solid rgb(166, 133, 133);
+			border-collapse: collapse;
+			height: 50px;
+			width: 500px;
+			size: large;
+			text-align: center;
+		}
+		div {
+			opacity: 0.6;
+			text-align: center;
+			position: absolute;
+			padding: 5%;
+			top: 50px;
+			left: 25%;
+			overflow: auto;
+			color: #0d2416;
+			font-weight: bold;
+			font-size: large;
+		}
+	</style>
+</head>
+
+<body>
+
+<div>
+<table class="table">
+	<tr>
+		<td>first name</td>
+		<td>last name</td>
+		<td>briddate</td>
+		<td>creation date</td>
+	</tr>
+	{% for u in users %}
+		<tr>
+			<td>{{ u.first_name }}</td>
+			<td>{{ u.last_name }}</td>
+			<td>{{ u.brith_date }}</td>
+			<td>{{ u.create_date }}</td>
+		</tr>
+	{% endfor %}
+</table>
+</div>
+
+</body>
+
+</html>

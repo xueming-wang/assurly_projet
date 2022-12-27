@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Client Input</title>
+	<style>
+		.form {
+			opacity: 0.6;
+			text-align: center;
+			position: absolute;
+			padding: 20px;
+			top: 100px;
+			left: 0px;
+			right: 0px;
+			overflow: auto;
+			color: #0d2416;
+			font-weight: bold;
+			font-size: large;
+		}
+		.submit {
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			margin: 2px 0;
+			border: solid 1px transparent;
+			border-radius: 4px;
+			padding: 0.5em 1em;
+			color: #ffffff;
+			background-color: #9555af;
+		}
+	</style>
+</head>
+
+<body>
+<form id="user-sub"  class='form' method="post">
+	<h3>ASSURLY<h3>
+	<h3>first name<input type="test" name="firstname" value="" id="fn" /></h3>
+	<h3>last name<input type="test" name="lastname" value="" id="ln" /></h3>
+	<h3><label> brith date
+		<input type="date" name="brith date" value="2000-01-01" id="bd" />
+	</label><h3>
+	<input class='submit' type="submit" name="submit" value="submit">
+</form>
+</body>
+
+<script>
+	uf = document.getElementById('user-sub')
+	uf.onsubmit = function handlesubmit(event) {
+		event.preventDefault();
+
+		const firstname = document.getElementById('fn').value;
+		const lastname = document.getElementById('ln').value;
+		const brithdate = document.getElementById('bd').value;
+
+		if (firstname == '' || lastname == '') {
+			alert('name is required')
+			return
+		}
+
+		if (firstname.length > 50 || lastname.length > 50) {
+			alert('name is too long')
+			return
+		}
+
+		const user = {
+			firstname: firstname,
+			lastname: lastname,
+			brithdate: brithdate
+		}
+
+		fetch('/api/create_user', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		}).then(response => {
+			console.log(response)
+			if (response.status === 200) {
+				alert('user created')
+			}
+		})
+	}
+
+</script>
+</html>
