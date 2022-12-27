@@ -1,6 +1,7 @@
 version: "3"
 services:
   db:
+    container_name: assurly_project_db
     image: postgres
     environment:
       - POSTGRES_USER
@@ -9,6 +10,7 @@ services:
       - "5432:5432"
 
   frontend:
+    container_name: assurly_project_frontend
     build: ./frontend
     ports:
       - "80:80"
@@ -16,6 +18,7 @@ services:
       - backend
 
   backend:
+    container_name: assurly_project_backend
     build: ./backend
     ports:
       - "8000:8000"
